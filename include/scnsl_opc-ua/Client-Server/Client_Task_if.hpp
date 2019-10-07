@@ -5,9 +5,10 @@
 #include <systemc.h>
 #include <scnsl.hh>
 #include <stdio.h>
-#include<iostream>
+#include <iostream>
 #include <tlm>
 #include "Opc-ua_payload.hpp"
+#include "Server_Task_if.hpp"
     
 // namespace Scnsl  
 
@@ -23,7 +24,6 @@ namespace Scnsl{ namespace Opc_ua {
         
         //pure virtual function to be implemented in the real client task
         virtual void clientProcess() =0;
-
    
     protected:
     
@@ -35,7 +35,7 @@ namespace Scnsl{ namespace Opc_ua {
         throw();
         
         //query method to defautl server
-        void* query(std::string & object);
+        virtual void* query(std::string & object) final;
 
     private:
 
@@ -51,6 +51,9 @@ namespace Scnsl{ namespace Opc_ua {
 
         // private function wrapped in query method
         void b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time & t );
+
+        //allow server to call btrasport to respond query and at the same time keep the method private
+        //friend class Server_Task_if; //must be forced in the implementation or move the method to public 
         
     };
     

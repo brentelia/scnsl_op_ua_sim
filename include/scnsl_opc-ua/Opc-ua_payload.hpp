@@ -6,13 +6,13 @@
 
 struct Opc_ua_payload_t
 {
-	unsigned int sender_id;			
+	std::string sender_id;		//id used to send message back	
 	double sender_time;
 	Scnsl::Opc_ua::Opc_funct command_type; //which function the payload represent
    
-   	std::string dat_id; //id in server address space for query
+   	std::string data_id; //id in server address space for query
 	
-	void* data; //data sent
+	General_type_t* data; //data sent
 
 	//****other fields for pubsub*****	
 	bool not_found_flag; // server cannot find the id requested; 	 

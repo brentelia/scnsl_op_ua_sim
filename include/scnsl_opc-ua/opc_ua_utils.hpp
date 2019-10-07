@@ -9,10 +9,10 @@ namespace Scnsl{ namespace Opc_ua{
     enum Opc_funct
     {
         QUERY_COMMAND,  //only for c-s architecture
-        DATA_COMMAND,
-        SUBSCRIBE_COMMAND,
-        PUBLISH_COMMAND,
-        OTHER_COMMAND
+        DATA_COMMAND,   //data from server/publisher
+        SUBSCRIBE_COMMAND,  //add subscription
+        PUBLISH_COMMAND,    //publish a data or add/update a variable in the address space
+        OTHER_COMMAND //...
     };
 }} 
 

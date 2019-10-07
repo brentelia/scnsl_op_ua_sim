@@ -8,12 +8,9 @@
 namespace Scnsl{ namespace Opc_ua{
     
     class General_type_t{
-        
-        protected:
-            General_type_t(std::string & name);
-            virtual ~General_type_t();
-        private:
-            std::string type_name;
+        public:
+            General_type_t() {};
+            General_type_t (const General_type_t &) {};
     };
 }
 }
