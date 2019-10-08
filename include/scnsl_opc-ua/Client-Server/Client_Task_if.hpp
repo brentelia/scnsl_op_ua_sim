@@ -35,14 +35,14 @@ namespace Scnsl{ namespace Opc_ua {
         throw();
         
         //query method to defautl server
-        virtual void* query(std::string & object) final;
+        virtual const General_type_t* query(std::string & object) final;
 
     private:
 
         unsigned int client_id;
         sc_event query_completed;   //event to notify the end of the query
 
-        void* data;
+        General_type_t* data;
 
         //disable copy constructor and assignment operator
         Client_Task_if(const Client_Task_if &);

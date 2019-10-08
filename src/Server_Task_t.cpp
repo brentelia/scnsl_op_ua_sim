@@ -18,15 +18,15 @@ void Server_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
 {
     //get data pointer
     Opc_ua_payload_t* payload = ((Opc_ua_payload_t*)p.get_data_ptr());
-    
     //different requests
     switch (payload->command_type)
     {
     case QUERY_COMMAND: //query from a client;
         query_solve(payload->sender_id, payload->data_id);
         break;
+    case PUBLISH_COMMAND:
+        add_variable(payload->data_id, *payload->data);
     //OTHER CASE IN FUTURE
-
     default:
         SCNSL_TRACE_ERROR( 1, "Invalid command received." );
         break;
@@ -47,14 +47,18 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
         query_p->data=nullptr;
         query_p->not_found_flag=true;
     }
-
     else {
-        query_p->data = &_Address_space[object_id];
+        query_p->data = & _Address_space[object_id];
         query_p->not_found_flag=false;
     }
         //DEBUG PRINT, TO REMOVE IN FUTURE
     std::cout<<"[SERVER "<<server_id<<"]:Sending response for client: "<<client_id<<std::endl;
     //////////////////////////////
-     //use send primitive 
+    //use send primitive 
     TlmTask_if_t::send(client_id,reinterpret_cast<byte_t *>(query_p),sizeof(Opc_ua_payload_t));
+}
+
+void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t & variable)
+{
+    _Address_space[name]=variable;        
 }

@@ -59,9 +59,10 @@ namespace Scnsl{ namespace Opc_ua {
         // private function, called from the client thanks to friend keyword
         void b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time & t );
 
-        void addVariable (std::string & name,Scnsl::Opc_ua::General_type_t & variable);
+        void add_variable (std::string & name,Scnsl::Opc_ua::General_type_t & variable);
         
         //friend class Scnsl::Opc_ua::Client_Task_if; //must be forced in the implementation or move the method to public 
+        //MACRO maybe?
     };
     
 }

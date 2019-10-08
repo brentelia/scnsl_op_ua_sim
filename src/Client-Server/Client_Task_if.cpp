@@ -40,7 +40,7 @@ void Client_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
 }
 
 // query for the data with specific id in the address space
-void* Client_Task_if::query(std::string & id){
+const General_type_t* Client_Task_if::query(std::string & id){
 
     Opc_ua_payload_t * query_p = static_cast<Opc_ua_payload_t *>(malloc(sizeof(Opc_ua_payload_t)*sizeof(query_p)));
 
