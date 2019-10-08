@@ -5,6 +5,13 @@
 //pubsub
 
 #include "scnsl/core/Task_if_t.hh"
+#include "scnsl_opc-ua/Opc-ua_payload.hpp"
+#include "scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp"
+#include "scnsl_opc-ua/Client-Server/Client_Task_if.hpp"
+#include "scnsl_opc-ua/Client-Server/General_type_t.hpp"
+#include "scnsl_opc-ua/Client-Server/Node_type.hpp"
+#include "scnsl_opc-ua/Client-Server/Server_Task_if.hpp"
+
 
 
 namespace Scnsl{
