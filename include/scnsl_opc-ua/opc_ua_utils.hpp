@@ -14,6 +14,14 @@ namespace Scnsl{ namespace Opc_ua{
         PUBLISH_COMMAND,    //publish a data or add/update a variable in the address space
         OTHER_COMMAND //...
     };
-}} 
+
+    //status of the message
+    enum Opc_message_status
+    {
+        OK_STATUS,
+        GENERIC_ERROR,
+        DATA_NOT_FOUND_ERROR  
+    };
+}}
 
 #endif // SCNSL_OPC_UA_UTILS_HPP

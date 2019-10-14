@@ -4,8 +4,8 @@ using namespace Scnsl::Opc_ua;
 
 //constructor
 template < typename T >
-Node_type<T>::Node_type(std::string & name, T & data):
-    General_type_t(name),
+Node_type<T>::Node_type(T & data):
+    General_type_t(),
     data(data)
 {}
 

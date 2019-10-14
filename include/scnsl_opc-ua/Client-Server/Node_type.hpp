@@ -8,10 +8,10 @@
 namespace Scnsl{ namespace Opc_ua{
 
     template < typename T >
-    class Node_type: public Scnsl::Opc_ua::General_Type_t
+    class Node_type: public Scnsl::Opc_ua::General_type_t
     {
         public:
-            Node_type(std::string & name, T & data);
+            Node_type( T & data);
             T & get_data() const;
         private:
             T & data;

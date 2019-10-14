@@ -22,17 +22,17 @@ void ClientTaskImpl::clientProcess()
         switch (std::rand()%size)
         {
         case 0:
-            std::cout<<"Sendig query for int"<<std::endl;
+            std::cout<<"[Client "<<client_id<<"]:Sendig query for int (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
             const Scnsl::Opc_ua::Node_type<int>* val = reinterpret_cast<const Scnsl::Opc_ua::Node_type<int>*> (query(data[0]));
             std::cout<<"Got result: "<<val->get_data()<<std::endl;
             break;
         case 1:
-            std::cout<<"Sendig query for String"<<std::endl;
+            std::cout<<"[Client "<<client_id<<"]:Sendig query for String"<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
             const Scnsl::Opc_ua::Node_type<std::string>* val = reinterpret_cast<const Scnsl::Opc_ua::Node_type<std::string>*> (query(data[1]));
             std::cout<<"Got result: "<<val->get_data()<<std::endl;
             break;
         case 2:
-            std::cout<<"Sendig query for Struct"<<std::endl;
+            std::cout<<"[Client "<<client_id<<"]:Sendig query for Struct"<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
             const Scnsl::Opc_ua::Node_type<double>* val = reinterpret_cast<const Scnsl::Opc_ua::Node_type<double>*> (query(data[2]));
             std::cout<<"Got result: "<<val->get_data()<<std::endl;
             break;
@@ -41,6 +41,7 @@ void ClientTaskImpl::clientProcess()
             break;
         }
     }
+    wait(std::rand()%500+500,sc_core::SC_MS);
 
 
 }

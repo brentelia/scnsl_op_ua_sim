@@ -20,7 +20,7 @@ void Client_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
     Opc_ua_payload_t* payload = ((Opc_ua_payload_t*)p.get_data_ptr());
     
     //server sent data to the client and data found
-    if(payload->command_type == DATA_COMMAND && ! payload->not_found_flag)
+    if(payload->command_type == DATA_COMMAND && ! payload->status==OK_STATUS)
     {
         data = payload->data;
 
@@ -32,7 +32,7 @@ void Client_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
         //notify the end of query
         query_completed.notify(); //preghiamo che funzioni
     }
-    else //btransport called with another command or data not found
+    else //btransport called with another command or error occurred
     {
         SCNSL_TRACE_ERROR( 1, "Invalid packet from server." );
         data = nullptr; //return null data, user has to take care of it
@@ -50,7 +50,7 @@ const General_type_t* Client_Task_if::query(std::string & id){
     query_p->command_type=QUERY_COMMAND;
     //useless data in query 
     query_p->data = nullptr;
-    query_p->not_found_flag=false;
+    query_p->status=OK_STATUS; //starting the query, no use for the response flag
 
     //DEBUG PRINT, TO REMOVE IN FUTURE
     std::cout<<"[CLIENT "<<client_id<<"]:Sending query to server for id: "<<id<<std::endl;

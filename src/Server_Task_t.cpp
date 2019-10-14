@@ -45,11 +45,11 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
     
     if(_Address_space.find(object_id)==_Address_space.end()){ //not found 
         query_p->data=nullptr;
-        query_p->not_found_flag=true;
+        query_p->status=DATA_NOT_FOUND_ERROR;
     }
     else {
         query_p->data = & _Address_space[object_id];
-        query_p->not_found_flag=false;
+        query_p->status=OK_STATUS;
     }
         //DEBUG PRINT, TO REMOVE IN FUTURE
     std::cout<<"[SERVER "<<server_id<<"]:Sending response for client: "<<client_id<<std::endl;
@@ -58,7 +58,7 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
     TlmTask_if_t::send(client_id,reinterpret_cast<byte_t *>(query_p),sizeof(Opc_ua_payload_t));
 }
 
-void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t & variable)
+void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t  variable)
 {
     _Address_space[name]=variable;        
 }

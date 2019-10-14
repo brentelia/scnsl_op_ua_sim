@@ -36,10 +36,10 @@ namespace Scnsl{ namespace Opc_ua {
         
         //query method to defautl server
         virtual const General_type_t* query(std::string & object) final;
+        unsigned int client_id;
 
     private:
 
-        unsigned int client_id;
         sc_event query_completed;   //event to notify the end of the query
 
         General_type_t* data;

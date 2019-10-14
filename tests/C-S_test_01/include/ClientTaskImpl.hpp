@@ -4,6 +4,7 @@
 #include "scnsl_opc-ua.hpp"
 #include <systemc>
 #include <scnsl.hh>
+#include "ServerTaskImpl.hpp"
 
 class ClientTaskImpl: public Scnsl::Opc_ua::Client_Task_if
 {
@@ -19,7 +20,7 @@ class ClientTaskImpl: public Scnsl::Opc_ua::Client_Task_if
         virtual void clientProcess();
         ClientTaskImpl( const ClientTaskImpl &);
         ClientTaskImpl & operator = (ClientTaskImpl &);
-        friend class ServerTaskImpl;    
-};
+        friend class ServerTaskImpl;   //needed   
+}; 
 
 #endif 
