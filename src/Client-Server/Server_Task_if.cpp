@@ -58,7 +58,7 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
     TlmTask_if_t::send(client_id,reinterpret_cast<byte_t *>(query_p),sizeof(Opc_ua_payload_t));
 }
 
-void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t  variable)
+void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t & variable)
 {
     _Address_space[name]=variable;        
 }
