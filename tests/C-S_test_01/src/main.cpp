@@ -26,7 +26,7 @@ int sc_main(int argc, char* argv[])
         /*
             CHANNEL CREATION
         */
-        //channel setup -> should be create automatically given the tasks and node number to avoid problems
+        //channel setup -> should be created automatically given the tasks and node number to avoid problems
         CoreChannelSetup_t channel_setup;
         channel_setup.extensionId = "core";
         //haf duplex channel for allow comunication in both sense
