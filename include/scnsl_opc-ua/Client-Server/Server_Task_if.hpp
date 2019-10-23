@@ -2,14 +2,14 @@
 #define SCNSL_OPC_UA_SERVER_TASK_IF_HPP
 
 //Client task for opc ua simulation
-#include <systemc.h>
+#include <systemc>
 #include <scnsl.hh>
 #include <stdio.h>
 #include <iostream>
 #include <tlm>
 #include <map>
-#include "Opc-ua_payload.hpp"
-#include "General_type_t.hpp"
+#include "../Opc-ua_payload.hpp"
+#include "../General_type_t.hpp"
 #include "Client_Task_if.hpp"
 
     

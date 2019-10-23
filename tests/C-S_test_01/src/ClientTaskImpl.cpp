@@ -1,4 +1,4 @@
-#include "ClientTaskImpl.hpp"clientProcess
+#include "ClientTaskImpl.hpp"
 #include <stdio.h>
 
 ClientTaskImpl::ClientTaskImpl(const sc_core::sc_module_name modulename,
