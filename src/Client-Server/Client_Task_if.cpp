@@ -1,5 +1,5 @@
 #include <sstream>
-#include "Client-Server/Client_Task_if.hpp"
+#include "Client_Task_if.hpp"
 
 using namespace Scnsl::Opc_ua;
 using namespace Scnsl::Tlm;
@@ -7,7 +7,8 @@ using namespace Scnsl::Tlm;
 
 Client_Task_if::Client_Task_if(const sc_core::sc_module_name modulename,
               const task_id_t id,
-              Scnsl::Core::Node_t * n):
+              Scnsl::Core::Node_t * n)
+              throw():
     
     TlmTask_if_t( modulename, id, n, 1 ),
     client_id(id)    

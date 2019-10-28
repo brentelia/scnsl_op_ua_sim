@@ -1,78 +1,31 @@
-#############################################
-# General CMake skeleton.
-#############################################
-#
-# @author Francesco Stefanni
-#
-
-#
-# HOWTO
-#
-# To configure these CMakeLists to your project,
-# just check the vars in this files, and adapt the .deps.txt file.
-#
-# Sections in this file:
-# - General.
-# - Inclusions.
-# - Svn.
-# - Install.
-# - CPack.
-# - Doxygen.
-#
-
-#############################################
-# General stuff.
-#############################################
 
 cmake_minimum_required(VERSION 2.8)
-project(scnsl_test CXX)
+project(scnsl_opc_ua_tests)
 
 cmake_policy(SET CMP0054 OLD) 
-cmake_policy(SET CMP0045 OLD)
-
-# Setting the default build type:
-SET(CMAKE_BUILD_TYPE Debug CACHE STRING
-  "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel." FORCE)
-
-SET(CMAKE_INSTALL_PREFIX ~/scnsl_${CMAKE_SYSTEM_PROCESSOR}/ CACHE PATH "Default install directory." FORCE)
-
-# As default, create shared libs.
-SET(BUILD_SHARED_LIBS ON CACHE BOOL "Chooses the type of libs." FORCE)
-
-# Adding a target doc.
-get_target_property(DOC_TARGET doc TYPE)
-if(NOT DOC_TARGET)
-  add_custom_target(doc)
-endif(NOT DOC_TARGET)
 
 
-#############################################
-# Inclusions.
-#############################################
 
-# Setting extra modules path:
+##############################
+#sources
+
+set(
+  CS1
+  C-S_test_01/src/ClientTaskImpl.cpp
+  C-S_test_01/src/main.cpp
+  C-S_test_01/src/ServerTaskImlp.cpp
+  )
+
+  # Setting extra modules path:
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/scripts)
 
-# Including general support:
-include(${PROJECT_SOURCE_DIR}/scripts/CMakeLists.support.txt)
-
-# Including common definitions and settings.
-include(${PROJECT_SOURCE_DIR}/scripts/CMakeLists.defs.txt)
-
-
-#############################################
-# SCNSL.
-#############################################
-
+##########
+# FIND SYSC AND SCNSL
+##########
 find_path(SCNSL_INCLUDE scnsl.hh
   PATHS $ENV{SCNSL_HOME}/include)
-find_library(LIB_SCNSL scnsl
-  PATHS $ENV{SCNSL_HOME}/lib)
+find_library(LIB_SCNSL scnsl  PATHS $ENV{SCNSL_HOME}/lib)
 mark_as_advanced(SCNSL_INCLUDE LIB_SCNSL)
-
-#############################################
-# Other support libs:
-#############################################
 
 find_library(LIB_DL dl)
 mark_as_advanced(LIB_DL)
@@ -80,41 +33,37 @@ mark_as_advanced(LIB_DL)
 find_library(LIB_PTHREAD pthread)
 mark_as_advanced(LIB_PTHREAD)
 
-
-#############################################
-# SystemC.
-#############################################
-
 find_package(SystemC)
-find_systemc(LIB_SYSTEMC SYSTEMC_INCLUDE)
+find_systemc(LIB_SYSTEMC SYSTEMC_INCLUDE) # from FINDSYSTEMC script
 find_systemc_tlm(SYSTEMC_TLM_INCLUDE)
-
 mark_as_advanced(LIB_SYSTEMC SYSTEMC_INCLUDE SYSTEMC_TLM_INCLUDE)
 
-#############################################
-# Revision.
-#############################################
+find_path(OPC_UA_INCLUDE scnsl_opc-ua.hpp
+  PATHS /usr/local/scnsl_opc_ua/include)
 
-find_package(Revision)
-find_revision(${PROJECT_SOURCE_DIR} SOURCES_REVISION)
-if(NOT SOURCES_REVISION)
-  SET(SOURCES_REVISION 0)
-endif(NOT SOURCES_REVISION)
-
-#message("REVISION NUMBER: ${SOURCES_REVISION}")
+find_library(OPC_UA opc_ua PATHS /usr/local/scnsl_opc_ua/lib)
+  
+mark_as_advanced(OPC_UA_INCLUDE OPC_UA)
 
 #############################################
-# Install.
+# Inclusions.
 #############################################
 
+include_directories(SYSTEM ${SCNSL_INCLUDE} ${SYSTEMC_INCLUDE} ${SYSTEMC_TLM_INCLUDE} ${OPC_UA_INCLUDE})
+include_directories(C-S_test_01/include)
+add_executable(CS1 ${CS1})
+target_link_libraries(CS1 ${LIB_SCNSL} ${LIB_SYSTEMC} ${LIB_DL} ${OPC_UA})
 
-include(CMakeLists.install)
+SET(EXE_TARGETS
+  CS1
+  )
 
+SET(TEST_TARGETS
+  ${EXE_TARGETS}
+  )
 
-#############################################
-# Targets.
-#############################################
-
-# Including targets and dependencies.
-include(${PROJECT_SOURCE_DIR}/CMakeLists.deps.txt)
-
+install(TARGETS ${EXE_TARGETS}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)

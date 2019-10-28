@@ -3,7 +3,7 @@
 #include <scnsl.hh>
 #include <exception>
 
-#include "scnsl_opc-ua.hpp"
+#include <scnsl_opc-ua.hpp>
 #include "ServerTaskImpl.hpp"
 #include "ClientTaskImpl.hpp"
 
@@ -41,7 +41,7 @@ int sc_main(int argc, char* argv[])
         /*
             TASK CREATION
         */
-        ServerTaskImpl Server ("Server",0,Server_node,1); //1 client 
+        ServerTaskImpl Server ("Server",0,Server_node,1); //numero client = 1 
         std::cout<< "Server created"<<std::endl;
 
         ClientTaskImpl Client ("Client",1,Client_node);

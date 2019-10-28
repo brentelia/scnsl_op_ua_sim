@@ -211,10 +211,10 @@ function(edalab_install_libraries COMPONENT)
       endif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
       string(REGEX MATCH ${REG} OUT "${cur}")
       if(NOT ("${OUT}" STREQUAL ""))
-	# Shared lib: must be installed!
-	install(PROGRAMS ${cur} DESTINATION ${DST}
-          COMPONENT ${COMPONENT}
-	  )
+        # Shared lib: must be installed!
+        install(PROGRAMS ${cur} DESTINATION ${DST}
+            COMPONENT ${COMPONENT}
+          )
       endif(NOT ("${OUT}" STREQUAL ""))
     else()
       edalab_message_error("Unexpected library to be installed: ${cur}")
@@ -320,7 +320,7 @@ endfunction(edalab_install_etc_files)
 ##
 ## @param NAME {String} The name of the target.
 ## @others The usual add_library() parameters.
-##
+##br
 function(edalab_add_library NAME)
 
   # Checking for library type specifiers:
@@ -384,10 +384,13 @@ endfunction(edalab_add_library )
 ##
 function(edalab_add_executable NAME)
   add_executable(${NAME} ${ARGN})
-  edalab_is_module_loaded(RES "EdalabGcc")
-  if(${RES})
+  edalab_is_module_loaded(RES1 "EdalabGcc")
+  edalab_is_module_loaded(RES2 "EdalabClang")
+  if(${RES1})
     edalab_gcc_set_exe_flags(${NAME})
-  endif(${RES})
+  elseif(${RES2})
+      edalab_clang_set_exe_flags(${NAME})
+  endif()
 endfunction(edalab_add_executable)
 
 

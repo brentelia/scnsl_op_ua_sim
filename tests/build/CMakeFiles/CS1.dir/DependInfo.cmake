@@ -10,20 +10,11 @@ set(CMAKE_DEPENDS_CHECK_CXX
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_CXX
-  "SCNSL_DBG=5"
-  "SCNSL_ERROR=5"
-  "SCNSL_FATAL=5"
-  "SCNSL_INFO=5"
-  "SCNSL_LOG=5"
-  "SCNSL_WARNING=5"
-  )
-
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/systemC/scnsl/include"
   "/usr/local/systemC/include"
+  "/usr/local/scnsl_opc_ua/include"
   "../C-S_test_01/include"
   )
 

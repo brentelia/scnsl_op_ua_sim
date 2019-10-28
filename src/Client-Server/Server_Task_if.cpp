@@ -7,7 +7,8 @@ using namespace Scnsl::Tlm;
 Server_Task_if::Server_Task_if(const sc_core::sc_module_name modulename,
               const task_id_t id,
               Scnsl::Core::Node_t * n,
-              const size_t proxies):
+              const size_t proxies)
+              throw():
     TlmTask_if_t( modulename, id, n, proxies ),
     server_id(id),
     _Address_space()

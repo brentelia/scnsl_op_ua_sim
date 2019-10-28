@@ -1,7 +1,7 @@
 #ifndef SERVER_TASK_IMPL_HPP
 #define SERVER_TASK_IMPL_HPP
 
-#include "../../../include/scnsl_opc-ua.hpp"
+#include <scnsl_opc-ua.hpp>
 #include <systemc>
 #include <scnsl.hh>
 #include <stdio.h>

@@ -6,7 +6,7 @@
 #include <scnsl.hh>
 #include <stdio.h>
 #include <iostream>
-#include <tlm>
+#include <tlm.h>
 #include "../Opc-ua_payload.hpp"
 #include "Server_Task_if.hpp"
     
@@ -40,7 +40,7 @@ namespace Scnsl{ namespace Opc_ua {
 
     private:
 
-        sc_event query_completed;   //event to notify the end of the query
+        sc_core::sc_event query_completed;   //event to notify the end of the query
 
         General_type_t* data;
 

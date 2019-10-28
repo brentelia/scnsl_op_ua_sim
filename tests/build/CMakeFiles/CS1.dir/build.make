@@ -145,6 +145,7 @@ CS1: CMakeFiles/CS1.dir/build.make
 CS1: /usr/local/systemC/scnsl/lib/libscnsl.so
 CS1: /usr/local/systemC/lib-linux64/libsystemc.so
 CS1: /usr/lib/x86_64-linux-gnu/libdl.so
+CS1: /usr/local/scnsl_opc_ua/lib/libopc_ua.so
 CS1: CMakeFiles/CS1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CS1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CS1.dir/link.txt --verbose=$(VERBOSE)

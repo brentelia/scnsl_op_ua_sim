@@ -40,6 +40,7 @@ add_definitions(
 
 include_directories(SYSTEM ${SCNSL_INCLUDE} ${SYSTEMC_INCLUDE} ${SYSTEMC_TLM_INCLUDE})
 include_directories(C-S_test_01/include)
+include_directories(SYSTEM /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/include)
 
 #############################################
 # Sources.
@@ -57,7 +58,7 @@ set(CS1
 
 #### Two_Nodes.
 add_executable(CS1 ${CS1})
-target_link_libraries(CS1 ${LIB_SCNSL} ${LIB_SYSTEMC} ${LIB_DL})
+target_link_libraries(CS1 ${LIB_SCNSL} ${LIB_SYSTEMC} ${LIB_DL} )
 
 #############################################
 # Targets Lists.

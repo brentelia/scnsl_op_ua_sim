@@ -27,6 +27,7 @@
 #   edalab_parse_option()
 #   edalab_parse_bool_option()
 #   -- Module functions:
+#   edalab_set_policies()
 #   edalab_initialize_module()
 #   edalab_is_module_loaded()
 #   edalab_check_target_exists()
@@ -73,10 +74,19 @@ set(EdalabBase_VERSION_PATCH 0)
 set(EdalabBase_VERSION_STRING "FindEdalabBase.cmake verison: "
   "${EdalabBase_VERSION_MAJOR}.${EdalabBase_VERSION_MINOR}.${EdalabBase_VERSION_PATCH}.")
 
-# Setting policies:
-if(POLICY CMP0054)
-  cmake_policy(SET CMP0054 NEW)
-endif(POLICY CMP0054)
+macro(edalab_set_policies)
+  # Setting policies:
+  # - Vars are not more automatically dereferenced!
+  if(POLICY CMP0054)
+    cmake_policy(SET CMP0054 NEW)
+  endif(POLICY CMP0054)
+
+  # - Policy: OLD not automatic link to qtmain.lib, NEW autolink on Windows
+  if(POLICY CMP0020)
+    cmake_policy(SET CMP0020 NEW)
+  endif(POLICY CMP0020)
+endmacro(edalab_set_policies)
+edalab_set_policies()
 
 # ##############################################################################
 # Support functions.
@@ -85,12 +95,24 @@ endif(POLICY CMP0054)
 function(_edalab_support_copy_package CMD PACKAGE PLATFORM ARCH)
   set(SRC "${PROJECT_SOURCE_DIR}/../../third_party/sandbox/${PACKAGE}/${PLATFORM}/${ARCH}.tar.bz2")
   set(DST "${PROJECT_SOURCE_DIR}/third_party/${PACKAGE}/${PLATFORM}/")
+  set(SRC2 "${PROJECT_SOURCE_DIR}/../third_party/${PACKAGE}/${PLATFORM}/${ARCH}.tar.bz2")
+  set(SRC3 "${PROJECT_SOURCE_DIR}/../../third_party/repo/${PACKAGE}/${PLATFORM}/${ARCH}.tar.bz2")
   if(EXISTS "${SRC}")
     if(NOT (EXISTS "${DST}"))
       set(CMD_A COMMAND ${CMAKE_COMMAND} -E make_directory ${DST})
     endif(NOT (EXISTS "${DST}"))
     set(CMD_B COMMAND ${CMAKE_COMMAND} -E copy ${SRC} ${DST})
-  endif(EXISTS "${SRC}")
+  elseif(EXISTS "${SRC2}")
+    if(NOT (EXISTS "${DST}"))
+      set(CMD_A COMMAND ${CMAKE_COMMAND} -E make_directory ${DST})
+    endif(NOT (EXISTS "${DST}"))
+    set(CMD_B COMMAND ${CMAKE_COMMAND} -E copy ${SRC2} ${DST})
+  elseif(EXISTS "${SRC3}")
+    if(NOT (EXISTS "${DST}"))
+      set(CMD_A COMMAND ${CMAKE_COMMAND} -E make_directory ${DST})
+    endif(NOT (EXISTS "${DST}"))
+    set(CMD_B COMMAND ${CMAKE_COMMAND} -E copy ${SRC3} ${DST})
+  endif()
   set(${CMD} ${CMD_A} ${CMD_B} PARENT_SCOPE)
 endfunction(_edalab_support_copy_package)
 
@@ -505,10 +527,30 @@ endfunction(edalab_update_target)
 ## @others {String} List of names of CMake scripts.
 ##
 function(edalab_add_cmake_update_scripts)
-  foreach(f ${ARGN})
-    set(CMD COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/../../build_utils/sandbox/scripts/${f} ${PROJECT_SOURCE_DIR}/scripts)
-    set(CMD_LIST ${CMD_LIST} ${CMD})
-  endforeach(f)
+  if (EXISTS "${PROJECT_SOURCE_DIR}/../../build_utils/sandbox/scripts/${f}")
+    foreach(f ${ARGN})
+      set(CMD COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/../../build_utils/sandbox/scripts/${f} ${PROJECT_SOURCE_DIR}/scripts)
+      set(CMD_LIST ${CMD_LIST} ${CMD})
+    endforeach(f)
+  elseif(EXISTS "${PROJECT_SOURCE_DIR}/../build_utils/scripts/${f}")
+    foreach(f ${ARGN})
+      set(CMD COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/../build_utils/scripts/${f} ${PROJECT_SOURCE_DIR}/scripts)
+      set(CMD_LIST ${CMD_LIST} ${CMD})
+    endforeach(f)
+  elseif(EXISTS "${PROJECT_SOURCE_DIR}/../../build_utils/scripts/${f}")
+    foreach(f ${ARGN})
+      set(CMD COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/../../build_utils/scripts/${f} ${PROJECT_SOURCE_DIR}/scripts)
+      set(CMD_LIST ${CMD_LIST} ${CMD})
+    endforeach(f)
+  elseif(EXISTS "${PROJECT_SOURCE_DIR}/../../build_utils/repo/scripts/${f}")
+    foreach(f ${ARGN})
+      set(CMD COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/../../build_utils/repo/${f} ${PROJECT_SOURCE_DIR}/scripts)
+      set(CMD_LIST ${CMD_LIST} ${CMD})
+    endforeach(f)
+  else()
+    edalab_warning_message("Cannot find: build_utils. No 'update_cmake_scripts' available")
+    return()
+  endif()
 
   edalab_add_updatable_target(update_cmake_scripts "Updating CMake scripts..." "Updating CMake scripts done.")
   edalab_update_target(update_cmake_scripts ${CMD_LIST})
@@ -582,8 +624,6 @@ endmacro(edalab_find_package)
 ## @others {Strings} Eventual HINTS for find_path().
 ##
 function(edalab_find_path OUT FILENAME PART_OF)
-  set(SRC_INSTALL_DIR "${PROJECT_SOURCE_DIR}/../../${FILENAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}")
-
   find_path(
     MYOUT
     NAMES ${FILENAME} ${FILENAME}.hh ${FILENAME}.h
@@ -591,15 +631,29 @@ function(edalab_find_path OUT FILENAME PART_OF)
     # User hints:
     ${ARGN}
     # Third party:
-    "${PROJECT_SOURCE_DIR}/third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/build/third_party/include"
+    "${PROJECT_SOURCE_DIR}/../third_party/build/third_party/include"
+    "${PROJECT_SOURCE_DIR}/../../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party/include"
+    "${PROJECT_SOURCE_DIR}/../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party/include"
+    "${PROJECT_SOURCE_DIR}/../../third_party/build/third_party/include/${PART_OF}"
+    "${PROJECT_SOURCE_DIR}/../third_party/build/third_party/include/${PART_OF}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party/include/${PART_OF}"
+    "${PROJECT_SOURCE_DIR}/../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party/include/${PART_OF}"
     "${PROJECT_SOURCE_DIR}/../../third_party/sandbox/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../third_party/sandbox/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/repo/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
     # Sources:
-    "${SRC_INSTALL_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${FILENAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${FILENAME}/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../${FILENAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../${FILENAME}/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${FILENAME}/repo/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
     # Inside install dir:
     "${CMAKE_INSTALL_PREFIX}"
     PATH_SUFFIXES include "include/${PART_OF}"
   )
-
   edalab_manage_notfound(OUT MYOUT ON)
 endfunction(edalab_find_path )
 
@@ -617,8 +671,6 @@ endfunction(edalab_find_path )
 ## @others {Strings} Eventual HINTS for find_executable().
 ##
 function(edalab_find_program OUT FILENAME PART_OF)
-  set(SRC_INSTALL_DIR "${PROJECT_SOURCE_DIR}/../../${FILENAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}")
-
   find_program(
     MYOUT
     NAMES ${FILENAME} ${FILENAME}.exe
@@ -626,10 +678,21 @@ function(edalab_find_program OUT FILENAME PART_OF)
     # User hints:
     ${ARGN}
     # Third party:
-    "${PROJECT_SOURCE_DIR}/third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/build/third_party/bin"
+    "${PROJECT_SOURCE_DIR}/../third_party/build/third_party/bin"
+    "${PROJECT_SOURCE_DIR}/../../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party/bin"
+    "${PROJECT_SOURCE_DIR}/../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party/bin"
     "${PROJECT_SOURCE_DIR}/../../third_party/sandbox/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../third_party/sanbox/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/repo/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
     # Sources:
-    "${SRC_INSTALL_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${FILENAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${FILENAME}/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../${FILENAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../${FILENAME}/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${FILENAME}/repo/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
     # Inside install dir:
     "${CMAKE_INSTALL_PREFIX}"
     PATH_SUFFIXES bin "bin/${PART_OF}"
@@ -706,8 +769,6 @@ function(edalab_find_library OUT LIBNAME KIND PART_OF)
       edalab_error_message("Unsupported platform: ${CMAKE_SYSTEM_NAME}")
   endif()
 
-  set(SRC_INSTALL_DIR "${PROJECT_SOURCE_DIR}/../../${LIBNAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}")
-
   # Searching:
   find_library(
     MYOUT
@@ -716,14 +777,26 @@ function(edalab_find_library OUT LIBNAME KIND PART_OF)
     # User hints:
     ${ARGN}
     # Third party:
-    "${PROJECT_SOURCE_DIR}/third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/build/third_party"
+    "${PROJECT_SOURCE_DIR}/../third_party/build/third_party"
+    "${PROJECT_SOURCE_DIR}/../../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party"
+    "${PROJECT_SOURCE_DIR}/../third_party/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/third_party"
     "${PROJECT_SOURCE_DIR}/../../third_party/sandbox/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../third_party/sandbox/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../third_party/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../third_party/repo/${PART_OF}/${CMAKE_SYSTEM_NAME}/${EDALAB_SYSTEM_DIR}"
     # Sources:
-    "${SRC_INSTALL_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${LIBNAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${LIBNAME}/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../${LIBNAME}/sandbox/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../${LIBNAME}/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
+    "${PROJECT_SOURCE_DIR}/../../${LIBNAME}/repo/obj_${EDALAB_SYSTEM_NAME}_${EDALAB_SYSTEM_WIDTH}/${PART_OF}-${EDALAB_TAG}-${EDALAB_SYSTEM_NAME}-${EDALAB_SYSTEM_DIR}"
     # Inside install dir:
     "${CMAKE_INSTALL_PREFIX}"
     PATH_SUFFIXES bin lib
     )
+
 
   # Managing the KIND parameter:
   set(CMAKE_FIND_LIBRARY_SUFFIXES ${RESTORE_SUFFIX})
@@ -1050,7 +1123,7 @@ function(_edalab_initialize_global_properties)
     set(EDALAB_SYSTEM_WIDTH "64" PARENT_SCOPE)
   else()
     # The current width is unknown.
-    message(FATAL_ERROR "Unexpected CMAKE_SIZEOF_VOID_P vallue: ${CMAKE_SIZEOF_VOID_P}")
+    message(FATAL_ERROR "Unexpected CMAKE_SIZEOF_VOID_P value: ${CMAKE_SIZEOF_VOID_P}")
   endif()
 
   set(EDALAB_SYSTEM_DIR "${EDALAB_SYSTEM_PROCESSOR}_${EDALAB_SYSTEM_WIDTH}" PARENT_SCOPE)
