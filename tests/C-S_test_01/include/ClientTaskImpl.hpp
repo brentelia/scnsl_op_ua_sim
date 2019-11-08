@@ -1,9 +1,11 @@
 #ifndef CLIENT_TASK_IMPL_HPP
 #define CLIENT_TASK_IMPL_HPP
 
-#include <scnsl_opc-ua.hpp>
+
 #include <systemc>
 #include <scnsl.hh>
+#include <scnsl_opc-ua.hpp>
+#include <stdio.h>
 #include "ServerTaskImpl.hpp"
 
 class ClientTaskImpl: public Scnsl::Opc_ua::Client_Task_if

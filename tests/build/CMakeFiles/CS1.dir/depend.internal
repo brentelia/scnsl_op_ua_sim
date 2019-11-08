@@ -5,14 +5,14 @@ CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o
  ../C-S_test_01/include/ClientTaskImpl.hpp
  ../C-S_test_01/include/ServerTaskImpl.hpp
  /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Node_type.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/opc_ua_utils.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Node_type.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_utils.hpp
  /usr/local/systemC/include/sysc/communication/sc_buffer.h
  /usr/local/systemC/include/sysc/communication/sc_clock.h
  /usr/local/systemC/include/sysc/communication/sc_clock_ports.h
@@ -272,18 +272,18 @@ CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o
  /usr/local/systemC/scnsl/include/scnsl/utils/Environment_if_t.hh
  /usr/local/systemC/scnsl/include/scnsl/utils/EventsQueue_t.hh
  /usr/local/systemC/scnsl/include/scnsl/utils/UserEnvironment_t.hh
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o
  ../C-S_test_01/include/ClientTaskImpl.hpp
  ../C-S_test_01/include/ServerTaskImpl.hpp
- /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImlp.cpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Node_type.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/opc_ua_utils.hpp
+ /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImpl.cpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Node_type.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_utils.hpp
  /usr/local/systemC/include/sysc/communication/sc_buffer.h
  /usr/local/systemC/include/sysc/communication/sc_clock.h
  /usr/local/systemC/include/sysc/communication/sc_clock_ports.h
@@ -547,14 +547,14 @@ CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o
  ../C-S_test_01/include/ClientTaskImpl.hpp
  ../C-S_test_01/include/ServerTaskImpl.hpp
  /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/main.cpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Node_type.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
- /usr/local/scnsl_opc_ua/include/scnsl_opc-ua/opc_ua_utils.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Node_type.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
+ /usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_utils.hpp
  /usr/local/systemC/include/sysc/communication/sc_buffer.h
  /usr/local/systemC/include/sysc/communication/sc_clock.h
  /usr/local/systemC/include/sysc/communication/sc_clock_ports.h

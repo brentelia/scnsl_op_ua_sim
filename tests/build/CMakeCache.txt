@@ -194,10 +194,10 @@ LIB_SCNSL:FILEPATH=/usr/local/systemC/scnsl/lib/libscnsl.so
 LIB_SYSTEMC:FILEPATH=/usr/local/systemC/lib-linux64/libsystemc.so
 
 //Path to a library.
-OPC_UA:FILEPATH=/usr/local/scnsl_opc_ua/lib/libopc_ua.so
+OPC_UA:FILEPATH=/usr/local/Opc_ua/lib/libopc_ua.so
 
 //Path to a file.
-OPC_UA_INCLUDE:PATH=/usr/local/scnsl_opc_ua/include
+OPC_UA_INCLUDE:PATH=/usr/local/Opc_ua/include
 
 //Path to a file.
 SCNSL_INCLUDE:PATH=/usr/local/systemC/scnsl/include

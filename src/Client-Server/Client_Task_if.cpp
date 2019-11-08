@@ -1,5 +1,6 @@
 #include <sstream>
-#include "Client_Task_if.hpp"
+#include "scnsl_opc-ua.hpp"
+#include "scnsl_opc-ua/Client-Server/Client_Task_if.hpp"
 
 using namespace Scnsl::Opc_ua;
 using namespace Scnsl::Tlm;

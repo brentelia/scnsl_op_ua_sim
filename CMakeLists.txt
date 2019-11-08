@@ -1,34 +1,22 @@
-
 cmake_minimum_required(VERSION 2.8)
-project(scnsl_opc_ua)
+
+project(scnsl_opc_ua CXX)
 
 cmake_policy(SET CMP0054 OLD) 
-
-
-#############################################
-# Inclusions.
-#############################################
 
 # Setting extra modules path:
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/scripts)
 
-##############################
-#sources
-set(
-    OPC_UA_SRCS 
-    src/Node_Type.cpp
-    src/Client-Server/Client_Task_if.cpp
-    src/Client-Server/Server_Task_if.cpp
-    src/Node_Type.cpp
-
-)
 ##########
 # FIND SYSC AND SCNSL
-##########
+# SYSC 2.3.1 IS REQUIRED
+# SCNSL 2.0.1 IS REQUIRED 
 find_path(SCNSL_INCLUDE scnsl.hh
-  PATHS $ENV{SCNSL_HOME}/include)
+  PATHS $ENV{SCNSL_HOME}/include
+)
 find_library(LIB_SCNSL scnsl
-  PATHS $ENV{SCNSL_HOME}/lib)
+  PATHS $ENV{SCNSL_HOME}/lib
+)
 mark_as_advanced(SCNSL_INCLUDE LIB_SCNSL)
 
 find_library(LIB_DL dl)
@@ -42,24 +30,42 @@ find_systemc(LIB_SYSTEMC SYSTEMC_INCLUDE) # from FINDSYSTEMC script
 find_systemc_tlm(SYSTEMC_TLM_INCLUDE)
 
 mark_as_advanced(LIB_SYSTEMC SYSTEMC_INCLUDE SYSTEMC_TLM_INCLUDE)
+#####################
 
-#####################
-#####################
-#headers
+#include directories
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/scnsl_opc-ua)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/scnsl_opc-ua/Client-Server)
 include_directories(SYSTEM ${SCNSL_INCLUDE} ${SYSTEMC_INCLUDE} ${SYSTEMC_TLM_INCLUDE})
 
-find_package(EdalabTargets) #edalab scripts for installation
+##############################
 
-edalab_add_library(opc_ua SHARED STATIC ${OPC_UA_SRCS})
+#sources
+set(OPC_UA_SRCS 
+  src/Client-Server/Client_Task_if.cpp
+  src/Client-Server/Server_Task_if.cpp
+  src/Node_Type.cpp
+)
+############################
+#static and shared library
+add_library(opc_ua_static STATIC ${OPC_UA_SRCS})
+add_library(opc_ua_shared SHARED ${OPC_UA_SRCS})
+#linking both libraries
+target_link_libraries(opc_ua_static ${LIB_SCNSL} ${LIB_SYSTEMC})
+target_link_libraries(opc_ua_shared ${LIB_SCNSL} ${LIB_SYSTEMC})
 
-target_link_libraries(
-  opc_ua
-  )
-edalab_install_headers(TOOLS ${CMAKE_CURRENT_SOURCE_DIR}/include)
-edalab_install_headers(TOOLS ${CMAKE_CURRENT_SOURCE_DIR}/include/scnsl_opc-ua)
-edalab_install_headers(TOOLS ${CMAKE_CURRENT_SOURCE_DIR}/include/scnsl_opc-ua/Client-Server)
-  
-edalab_install_targets(TOOLS opc_ua)
+#############################
+#install static and shared library
+install(TARGETS opc_ua_static opc_ua_shared
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+#install headers
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include
+  DESTINATION .
+  FILES_MATCHING # install only matched files
+  PATTERN "*.hpp" # select header files
+)
+############################
+#test
+#add_subdirectories(test)

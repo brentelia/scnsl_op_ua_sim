@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /usr/local/systemC/scnsl/include -isystem /usr/local/systemC/include -isystem /usr/local/scnsl_opc_ua/include -I/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/include 
+CXX_INCLUDES = -isystem /usr/local/Opc_ua/include -isystem /usr/local/systemC/scnsl/include -isystem /usr/local/systemC/include -I/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/include 
 

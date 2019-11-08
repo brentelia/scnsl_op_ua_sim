@@ -2,7 +2,7 @@
 #define OPC_UA_PAYLOAD_HPP
 //payload struct for OPC_UA services data exchange
 #include <string>
-#include"opc_ua_utils.hpp"
+#include"Opc_ua_utils.hpp"
 #include "General_type_t.hpp"
 
 struct Opc_ua_payload_t

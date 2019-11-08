@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o"
   "CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o"
-  "CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o"
+  "CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o"
+  "CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o"
   "CS1.pdb"
   "CS1"
 )

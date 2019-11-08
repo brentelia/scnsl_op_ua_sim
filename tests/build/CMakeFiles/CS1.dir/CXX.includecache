@@ -38,7 +38,7 @@ ClientTaskImpl.hpp
 stdio.h
 -
 
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImlp.cpp
+/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImpl.cpp
 ServerTaskImpl.hpp
 /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImpl.hpp
 
@@ -58,25 +58,27 @@ ServerTaskImpl.hpp
 ClientTaskImpl.hpp
 /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua.hpp
 scnsl/core/Task_if_t.hh
-/usr/local/scnsl_opc_ua/include/scnsl/core/Task_if_t.hh
-scnsl_opc-ua/Opc-ua_payload.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
-scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
-scnsl_opc-ua/Client-Server/Client_Task_if.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl/core/Task_if_t.hh
+scnsl_opc-ua/Opc_ua_payload.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
+scnsl_opc-ua/Opc_ua_utils.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_utils.hpp
 scnsl_opc-ua/General_type_t.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
 scnsl_opc-ua/Node_type.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Node_type.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Node_type.hpp
+scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
+scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
 scnsl_opc-ua/Client-Server/Server_Task_if.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Sub_Task_t.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
 systemc
 -
 scnsl.hh
@@ -87,12 +89,12 @@ iostream
 -
 tlm.h
 -
-../Opc-ua_payload.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
+../Opc_ua_payload.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
 Server_Task_if.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Server_Task_if.hpp
 systemc
 -
 scnsl.hh
@@ -105,30 +107,30 @@ tlm.h
 -
 map
 -
-../Opc-ua_payload.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
+../Opc_ua_payload.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
 ../General_type_t.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
 Client_Task_if.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Client-Server/Client_Task_if.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
 string
 -
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Node_type.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Node_type.hpp
 General_type_t.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/Opc-ua_payload.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_payload.hpp
 string
 -
-opc_ua_utils.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/opc_ua_utils.hpp
+Opc_ua_utils.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_utils.hpp
 General_type_t.hpp
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/General_type_t.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/General_type_t.hpp
 
-/usr/local/scnsl_opc_ua/include/scnsl_opc-ua/opc_ua_utils.hpp
+/usr/local/Opc_ua/include/scnsl_opc-ua/Opc_ua_utils.hpp
 
 /usr/local/systemC/include/sysc/communication/sc_buffer.h
 sysc/communication/sc_signal.h

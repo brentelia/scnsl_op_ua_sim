@@ -49,7 +49,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/CS1")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/CS1"
-         OLD_RPATH "/usr/local/systemC/scnsl/lib:/usr/local/systemC/lib-linux64:/usr/local/scnsl_opc_ua/lib:"
+         OLD_RPATH "/usr/local/Opc_ua/lib:/usr/local/systemC/scnsl/lib:/usr/local/systemC/lib-linux64:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/CS1")

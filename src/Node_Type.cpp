@@ -1,5 +1,5 @@
-#include "Node_type.hpp"
-
+#include "scnsl_opc-ua.hpp"
+#include "scnsl_opc-ua/Node_type.hpp"
 using namespace Scnsl::Opc_ua;
 
 //constructor

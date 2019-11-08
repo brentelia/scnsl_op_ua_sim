@@ -1,4 +1,5 @@
-#include "Server_Task_if.hpp"
+#include "scnsl_opc-ua.hpp"
+#include "scnsl_opc-ua/Client-Server/Server_Task_if.hpp"
 
 using namespace Scnsl::Opc_ua;
 using namespace Scnsl::Tlm;

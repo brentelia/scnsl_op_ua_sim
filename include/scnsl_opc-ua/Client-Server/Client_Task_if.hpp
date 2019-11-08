@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <tlm.h>
-#include "../Opc-ua_payload.hpp"
+#include "../Opc_ua_payload.hpp"
 #include "Server_Task_if.hpp"
     
 // namespace Scnsl  

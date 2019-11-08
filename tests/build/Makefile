@@ -196,32 +196,32 @@ C-S_test_01/src/ClientTaskImpl.cpp.s:
 	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s
 .PHONY : C-S_test_01/src/ClientTaskImpl.cpp.s
 
-C-S_test_01/src/ServerTaskImlp.o: C-S_test_01/src/ServerTaskImlp.cpp.o
+C-S_test_01/src/ServerTaskImpl.o: C-S_test_01/src/ServerTaskImpl.cpp.o
 
-.PHONY : C-S_test_01/src/ServerTaskImlp.o
+.PHONY : C-S_test_01/src/ServerTaskImpl.o
 
 # target to build an object file
-C-S_test_01/src/ServerTaskImlp.cpp.o:
-	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o
-.PHONY : C-S_test_01/src/ServerTaskImlp.cpp.o
+C-S_test_01/src/ServerTaskImpl.cpp.o:
+	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o
+.PHONY : C-S_test_01/src/ServerTaskImpl.cpp.o
 
-C-S_test_01/src/ServerTaskImlp.i: C-S_test_01/src/ServerTaskImlp.cpp.i
+C-S_test_01/src/ServerTaskImpl.i: C-S_test_01/src/ServerTaskImpl.cpp.i
 
-.PHONY : C-S_test_01/src/ServerTaskImlp.i
+.PHONY : C-S_test_01/src/ServerTaskImpl.i
 
 # target to preprocess a source file
-C-S_test_01/src/ServerTaskImlp.cpp.i:
-	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.i
-.PHONY : C-S_test_01/src/ServerTaskImlp.cpp.i
+C-S_test_01/src/ServerTaskImpl.cpp.i:
+	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.i
+.PHONY : C-S_test_01/src/ServerTaskImpl.cpp.i
 
-C-S_test_01/src/ServerTaskImlp.s: C-S_test_01/src/ServerTaskImlp.cpp.s
+C-S_test_01/src/ServerTaskImpl.s: C-S_test_01/src/ServerTaskImpl.cpp.s
 
-.PHONY : C-S_test_01/src/ServerTaskImlp.s
+.PHONY : C-S_test_01/src/ServerTaskImpl.s
 
 # target to generate assembly for a file
-C-S_test_01/src/ServerTaskImlp.cpp.s:
-	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.s
-.PHONY : C-S_test_01/src/ServerTaskImlp.cpp.s
+C-S_test_01/src/ServerTaskImpl.cpp.s:
+	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.s
+.PHONY : C-S_test_01/src/ServerTaskImpl.cpp.s
 
 C-S_test_01/src/main.o: C-S_test_01/src/main.cpp.o
 
@@ -266,9 +266,9 @@ help:
 	@echo "... C-S_test_01/src/ClientTaskImpl.o"
 	@echo "... C-S_test_01/src/ClientTaskImpl.i"
 	@echo "... C-S_test_01/src/ClientTaskImpl.s"
-	@echo "... C-S_test_01/src/ServerTaskImlp.o"
-	@echo "... C-S_test_01/src/ServerTaskImlp.i"
-	@echo "... C-S_test_01/src/ServerTaskImlp.s"
+	@echo "... C-S_test_01/src/ServerTaskImpl.o"
+	@echo "... C-S_test_01/src/ServerTaskImpl.i"
+	@echo "... C-S_test_01/src/ServerTaskImpl.s"
 	@echo "... C-S_test_01/src/main.o"
 	@echo "... C-S_test_01/src/main.i"
 	@echo "... C-S_test_01/src/main.s"

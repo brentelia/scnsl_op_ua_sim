@@ -57,33 +57,9 @@ include CMakeFiles/CS1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CS1.dir/flags.make
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o: CMakeFiles/CS1.dir/flags.make
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o: ../C-S_test_01/src/ClientTaskImpl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o -c /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp
-
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp > CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.i
-
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp -o CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s
-
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires:
-
-.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires
-
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides.build
-.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides
-
-CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides.build: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o
-
-
 CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o: CMakeFiles/CS1.dir/flags.make
 CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o: ../C-S_test_01/src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o -c /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/main.cpp
 
 CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.i: cmake_force
@@ -105,47 +81,71 @@ CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o.provides: CMakeFiles/CS1.dir/C-S_t
 CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o.provides.build: CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o
 
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o: CMakeFiles/CS1.dir/flags.make
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o: ../C-S_test_01/src/ServerTaskImlp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o -c /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImlp.cpp
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o: CMakeFiles/CS1.dir/flags.make
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o: ../C-S_test_01/src/ServerTaskImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o -c /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImpl.cpp
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImlp.cpp > CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.i
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImpl.cpp > CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.i
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImlp.cpp -o CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.s
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ServerTaskImpl.cpp -o CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.s
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.requires:
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.requires:
 
-.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.requires
+.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.requires
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.provides: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.provides.build
-.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.provides
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.provides: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.requires
+	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.provides.build
+.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.provides
 
-CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.provides.build: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o
+CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.provides.build: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o
+
+
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o: CMakeFiles/CS1.dir/flags.make
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o: ../C-S_test_01/src/ClientTaskImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o -c /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp
+
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp > CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.i
+
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/C-S_test_01/src/ClientTaskImpl.cpp -o CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.s
+
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires:
+
+.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires
+
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires
+	$(MAKE) -f CMakeFiles/CS1.dir/build.make CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides.build
+.PHONY : CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides
+
+CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.provides.build: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o
 
 
 # Object files for target CS1
 CS1_OBJECTS = \
-"CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o" \
 "CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o" \
-"CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o"
+"CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o" \
+"CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o"
 
 # External object files for target CS1
 CS1_EXTERNAL_OBJECTS =
 
-CS1: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o
 CS1: CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o
-CS1: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o
+CS1: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o
+CS1: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o
 CS1: CMakeFiles/CS1.dir/build.make
+CS1: /usr/local/Opc_ua/lib/libopc_ua.so
 CS1: /usr/local/systemC/scnsl/lib/libscnsl.so
 CS1: /usr/local/systemC/lib-linux64/libsystemc.so
 CS1: /usr/lib/x86_64-linux-gnu/libdl.so
-CS1: /usr/local/scnsl_opc_ua/lib/libopc_ua.so
 CS1: CMakeFiles/CS1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CS1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CS1.dir/link.txt --verbose=$(VERBOSE)
@@ -155,9 +155,9 @@ CMakeFiles/CS1.dir/build: CS1
 
 .PHONY : CMakeFiles/CS1.dir/build
 
-CMakeFiles/CS1.dir/requires: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires
 CMakeFiles/CS1.dir/requires: CMakeFiles/CS1.dir/C-S_test_01/src/main.cpp.o.requires
-CMakeFiles/CS1.dir/requires: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImlp.cpp.o.requires
+CMakeFiles/CS1.dir/requires: CMakeFiles/CS1.dir/C-S_test_01/src/ServerTaskImpl.cpp.o.requires
+CMakeFiles/CS1.dir/requires: CMakeFiles/CS1.dir/C-S_test_01/src/ClientTaskImpl.cpp.o.requires
 
 .PHONY : CMakeFiles/CS1.dir/requires
 
