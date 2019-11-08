@@ -1,7 +1,0 @@
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/install/strip.dir
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/edit_cache.dir
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/CS1.dir
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/rebuild_cache.dir
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/list_install_components.dir
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/install/local.dir
-/home/elia/Scrivania/scnsl_opc_ua/scnsl_op_ua_sim/tests/build/CMakeFiles/install.dir
