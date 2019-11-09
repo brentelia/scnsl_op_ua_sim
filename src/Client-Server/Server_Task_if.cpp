@@ -15,6 +15,9 @@ Server_Task_if::Server_Task_if(const sc_core::sc_module_name modulename,
     _Address_space()
 {}
 
+Server_Task_if::~Server_Task_if()
+{}
+
 //btransport called by the client, need to know what kind of service must be offered and if we need to responde back 
 void Server_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time & t )
 {

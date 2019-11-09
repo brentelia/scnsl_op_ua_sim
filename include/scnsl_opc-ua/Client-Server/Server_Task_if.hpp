@@ -22,8 +22,8 @@ namespace Scnsl{ namespace Opc_ua {
         public Scnsl::Tlm::TlmTask_if_t
     {
     public:        
-        //virtual pure destructor
-        virtual ~Server_Task_if() = 0;
+        //virtual  destructor
+        virtual ~Server_Task_if();
         
         //pure virtual function to be implemented in the real client task
         virtual void serverProcess() =0;

@@ -15,6 +15,9 @@ Client_Task_if::Client_Task_if(const sc_core::sc_module_name modulename,
     client_id(id)    
 {}
 
+Client_Task_if::~Client_Task_if()
+{}
+
 //btransport called from server
 void Client_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time & t ){
 

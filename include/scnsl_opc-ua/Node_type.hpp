@@ -11,8 +11,8 @@ namespace Scnsl{ namespace Opc_ua{
     class Node_type: public Scnsl::Opc_ua::General_type_t
     {
         public:
-            Node_type( T & data);
-            T & get_data() const;
+            Node_type( T & data):General_type_t(),data(data) {};
+            T & get_data() const{return data;};
         private:
             T & data;
     };

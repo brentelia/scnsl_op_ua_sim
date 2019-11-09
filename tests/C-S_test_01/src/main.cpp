@@ -9,15 +9,15 @@
 
 using namespace Scnsl::Setup;
 using namespace Scnsl::BuiltinPlugin;
-using namespace Scnsl::Opc_ua;
+//using namespace Scnsl::Opc_ua;
 
 int sc_main(int argc, char* argv[])
 {
     try{
         //simaulation creation
-        Scnsl_t *simulation = Scnsl_t::get_instance();
+        Scnsl::Setup::Scnsl_t *simulation = Scnsl::Setup::Scnsl_t::get_instance();
         //environment
-        Scnsl::Utils::DefaultEnvironment_t::createInstance();
+        Scnsl::Utils::DefaultEnvironment_t::createInstance(0.1);
 
         //node creation, not important since opc-ua is implemented as task
         Scnsl::Core::Node_t *Server_node = simulation->createNode();
@@ -26,15 +26,15 @@ int sc_main(int argc, char* argv[])
         /*
             CHANNEL CREATION
         */
-        //channel setup -> should be created automatically given the tasks and node number to avoid problems
+        //setup -> should be created automatically given the tasks and node number to avoid problems
         CoreChannelSetup_t channel_setup;
         channel_setup.extensionId = "core";
         //haf duplex channel for allow comunication in both sense
-        channel_setup.channel_type = CoreChannelSetup_t::HALF_DUPLEX;
-        channel_setup.name = "Test_channel";
+        channel_setup.channel_type = CoreChannelSetup_t::SHARED;
+        channel_setup.name = "channel";
+        channel_setup.alpha = 0.1;
         channel_setup.delay = sc_core::sc_time(1.0,sc_core::SC_US);
         channel_setup.nodes_number = 2;
-
         Scnsl::Core::Channel_if_t *channel = simulation->createChannel(channel_setup);
         /////////////////////////////////////////////
 
@@ -67,7 +67,7 @@ int sc_main(int argc, char* argv[])
         comm.node = Client_node;
         mac0 = simulation->createCommunicator(comm);
         ///////////////////////////////////
-
+        std::cout<<"Comunicator created"<<std::endl;
         /*
             BINDINGS
         */
@@ -88,7 +88,8 @@ int sc_main(int argc, char* argv[])
         simulation->bind(Server_node,channel,base_bind_0);
 
         simulation->bind(&Server, &Client, channel,base_bind_0,mac0);
-
+        std::cout<<"Bind server to client"<<std::endl;
+      
         //client to server channel
         BindSetup_base_t base_bind_1;
         base_bind_1.extensionId = "core";
@@ -104,7 +105,9 @@ int sc_main(int argc, char* argv[])
         simulation->bind(Client_node,channel,base_bind_1);
 
         simulation->bind(&Client, &Server, channel,base_bind_1,mac1);
-        
+        std::cout<<"Bind client to server"<<std::endl;
+
+        std::cout<<"Starting simulation"<<std::endl;
         sc_core::sc_start(sc_core::sc_time(500,sc_core::SC_SEC));
         sc_core::sc_stop();
     }

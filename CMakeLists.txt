@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-
 project(scnsl_opc_ua CXX)
-
 cmake_policy(SET CMP0054 OLD) 
 
 # Setting extra modules path:
@@ -43,7 +41,7 @@ include_directories(SYSTEM ${SCNSL_INCLUDE} ${SYSTEMC_INCLUDE} ${SYSTEMC_TLM_INC
 set(OPC_UA_SRCS 
   src/Client-Server/Client_Task_if.cpp
   src/Client-Server/Server_Task_if.cpp
-  src/Node_Type.cpp
+  #src/Node_Type.cpp
 )
 ############################
 #static and shared library
@@ -68,4 +66,4 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 ############################
 #test
-#add_subdirectories(test)
+#add_subdirectory(tests/C-S_test_01/)
