@@ -2,7 +2,7 @@
 #include <tlm.h>
 #include <scnsl.hh>
 #include <exception>
-
+#include <string>
 #include <scnsl_opc-ua.hpp>
 #include "ServerTaskImpl.hpp"
 #include "ClientTaskImpl.hpp"
@@ -30,9 +30,9 @@ int sc_main(int argc, char* argv[])
         CoreChannelSetup_t channel_setup;
         channel_setup.extensionId = "core";
         //haf duplex channel for allow comunication in both sense
-        channel_setup.channel_type = CoreChannelSetup_t::SHARED;
+        channel_setup.channel_type = CoreChannelSetup_t::HALF_DUPLEX;
         channel_setup.name = "channel";
-        channel_setup.alpha = 0.1;
+        channel_setup.capacity = 10000;
         channel_setup.delay = sc_core::sc_time(1.0,sc_core::SC_US);
         channel_setup.nodes_number = 2;
         Scnsl::Core::Channel_if_t *channel = simulation->createChannel(channel_setup);
@@ -41,10 +41,12 @@ int sc_main(int argc, char* argv[])
         /*
             TASK CREATION
         */
-        ServerTaskImpl Server ("Server",0,Server_node,1); //numero client = 1 
+        int server_id=0;
+        int client_id=1;
+        ServerTaskImpl Server ("Server",server_id,Server_node,1); //numero client = 1 
         std::cout<< "Server created"<<std::endl;
 
-        ClientTaskImpl Client ("Client",1,Client_node);
+        ClientTaskImpl Client ("Client",client_id,Client_node);
         std::cout<<"Client created"<<std::endl;
         /////////////////////////////////////////////////
 
@@ -53,7 +55,7 @@ int sc_main(int argc, char* argv[])
         */
         CoreCommunicatorSetup_t comm;
         comm.extensionId ="core";
-        comm.ack_required = true;
+        comm.ack_required = false;
         comm.short_addresses= true;
         comm.type= CoreCommunicatorSetup_t::MAC_802_15_4;
 
@@ -65,7 +67,7 @@ int sc_main(int argc, char* argv[])
         Scnsl::Core::Communicator_if_t *mac1;
         comm.name = "Mac1";
         comm.node = Client_node;
-        mac0 = simulation->createCommunicator(comm);
+        mac1 = simulation->createCommunicator(comm);
         ///////////////////////////////////
         std::cout<<"Comunicator created"<<std::endl;
         /*
@@ -76,7 +78,7 @@ int sc_main(int argc, char* argv[])
 
         BindSetup_base_t base_bind_0;
         base_bind_0.extensionId = "core";
-        base_bind_0.bindIdentifier="Server_Client";
+        base_bind_0.bindIdentifier=std::to_string(server_id)+"_S";
         base_bind_0.destinationNode = Client_node;
         base_bind_0.node_binding.x = 0;
 		base_bind_0.node_binding.y = 0;
@@ -93,7 +95,7 @@ int sc_main(int argc, char* argv[])
         //client to server channel
         BindSetup_base_t base_bind_1;
         base_bind_1.extensionId = "core";
-        base_bind_1.bindIdentifier="Client_Server";
+        base_bind_1.bindIdentifier=std::to_string(client_id)+"_C";
         base_bind_1.destinationNode = Server_node;
         base_bind_1.node_binding.x = 10;
 		base_bind_1.node_binding.y = 5;
@@ -103,13 +105,15 @@ int sc_main(int argc, char* argv[])
         base_bind_1.node_binding.receiving_threshold = 10;
         
         simulation->bind(Client_node,channel,base_bind_1);
+        std::cout<<"Bind client_node to channel"<<std::endl;
+
 
         simulation->bind(&Client, &Server, channel,base_bind_1,mac1);
         std::cout<<"Bind client to server"<<std::endl;
 
         std::cout<<"Starting simulation"<<std::endl;
-        sc_core::sc_start(sc_core::sc_time(500,sc_core::SC_SEC));
-        sc_core::sc_stop();
+        sc_core::sc_start(sc_core::sc_time(100,sc_core::SC_SEC));
+        //sc_core::sc_stop();
     }
     catch (std::exception &e){
         std::cerr << "Exception in sc_main(): " << e.what() << std::endl;

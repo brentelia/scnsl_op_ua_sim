@@ -16,30 +16,46 @@ void ClientTaskImpl::clientProcess()
 {
     std::string data_t[] = {"INT", "STRING", "DOUBLE"};
     int size = 3; //array size
-
+    Scnsl::Opc_ua::General_type_t* response;
     while( 1 ){
-
+        wait(std::rand()%500+1000,sc_core::SC_MS);  
         switch (std::rand()%size)
         {
         case 0:
             {
                 std::cout<<"[Client "<<client_id<<"]:Sendig query for int (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
-                const Scnsl::Opc_ua::Node_type<int>* val = reinterpret_cast<const Scnsl::Opc_ua::Node_type<int>*> (query(data_t[0]));
-                std::cout<<"Got result: "<<val->get_data()<<std::endl;
+                response = query(data_t[0]);
+                if(last_query_status == Scnsl::Opc_ua::DATA_NOT_FOUND_ERROR)
+                    std::cout<<"Got no result, maybe response was not initialized yet: "<<std::endl;
+
+                else{
+                    const Scnsl::Opc_ua::Node_type<int>* val = reinterpret_cast<Scnsl::Opc_ua::Node_type<int>*>(response);
+                    std::cout<<"[Client "<<client_id<<"]Got result "<<val->get_data()<<std::endl;
+                }
             }
             break;
         case 1:
             {
-                std::cout<<"[Client "<<client_id<<"]:Sendig query for String"<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
-                const Scnsl::Opc_ua::Node_type<std::string>* val = reinterpret_cast<const Scnsl::Opc_ua::Node_type<std::string>*> (query(data_t[1]));
-                std::cout<<"Got result: "<<val->get_data()<<std::endl;
+                std::cout<<"[Client "<<client_id<<"]:Sendig query for String (time:"<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
+                response = query(data_t[1]);
+                if(last_query_status == Scnsl::Opc_ua::DATA_NOT_FOUND_ERROR)
+                    std::cout<<"Got no result, maybe response was not initialized yet "<<std::endl;
+                else{
+                    const Scnsl::Opc_ua::Node_type<std::string>* val = reinterpret_cast< Scnsl::Opc_ua::Node_type<std::string>*>(response);
+                    std::cout<<"[Client "<<client_id<<"]Got result: "<<val->get_data()<<std::endl;
+                }
             }
             break;
         case 2:
             {
-                std::cout<<"[Client "<<client_id<<"]:Sendig query for Struct"<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
-                const Scnsl::Opc_ua::Node_type<double>* val = reinterpret_cast<const Scnsl::Opc_ua::Node_type<double>*> (query(data_t[2]));
-                std::cout<<"Got result: "<<val->get_data()<<std::endl;
+                std::cout<<"[Client "<<client_id<<"]:Sendig query for Struct (time:"<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
+                response = query(data_t[2]);
+                if(last_query_status == Scnsl::Opc_ua::DATA_NOT_FOUND_ERROR)
+                    std::cout<<"Got no result, maybe response was not initialized yet "<<std::endl;
+                else{
+                    const Scnsl::Opc_ua::Node_type<double> *val = reinterpret_cast<Scnsl::Opc_ua::Node_type<double>*>(response);
+                    std::cout<<"[Client "<<client_id<<"]Got result: "<<val->get_data()<<std::endl;
+                }
             }
             break;
         default:
@@ -47,7 +63,6 @@ void ClientTaskImpl::clientProcess()
             break;
         }
     }
-    wait(std::rand()%500+500,sc_core::SC_MS);
 
 
 }

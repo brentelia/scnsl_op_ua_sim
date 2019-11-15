@@ -7,8 +7,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <tlm.h>
-#include "../Opc_ua_payload.hpp"
+#include <string>
+//#include "../Opc_ua_payload.hpp"
 #include "Server_Task_if.hpp"
+#include <sstream>
+#include "../../scnsl_opc-ua.hpp"
+//#include "scnsl_opc-ua/Client-Server/Client_Task_if.hpp"
+
     
 // namespace Scnsl  
 
@@ -26,7 +31,10 @@ namespace Scnsl{ namespace Opc_ua {
         virtual void clientProcess() =0;
    
     protected:
-    
+        //allow to know last query result
+        Scnsl::Opc_ua::Opc_message_status last_query_status;
+
+
         //counstructor
         Client_Task_if(const sc_core::sc_module_name modulename,
               const task_id_t id,
@@ -35,14 +43,15 @@ namespace Scnsl{ namespace Opc_ua {
         throw();
         
         //query method to defautl server
-        virtual const General_type_t* query(std::string & object) final;
-        unsigned int client_id;
+        virtual General_type_t* query(std::string & object) final;
+        int client_id;
 
     private:
 
+
         sc_core::sc_event query_completed;   //event to notify the end of the query
 
-        General_type_t* data;
+        General_type_t data;
 
         //disable copy constructor and assignment operator
         Client_Task_if(const Client_Task_if &);

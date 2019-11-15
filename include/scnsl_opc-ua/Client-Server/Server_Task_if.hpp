@@ -8,6 +8,7 @@
 #include <iostream>
 #include <tlm.h>
 #include <map>
+#include <string>
 #include "../Opc_ua_payload.hpp"
 #include "../General_type_t.hpp"
 #include "Client_Task_if.hpp"
@@ -40,7 +41,7 @@ namespace Scnsl{ namespace Opc_ua {
         
         //meyhod to resolve the query
         virtual void query_solve(std::string & client_id,std::string & object) final;
-        unsigned int server_id;
+        int server_id;
         void add_variable (std::string & name,Scnsl::Opc_ua::General_type_t & variable);
 
     private:
@@ -48,9 +49,9 @@ namespace Scnsl{ namespace Opc_ua {
         //sc_event query_completed;   //event to notify the end of the query
 
         //The server adress space
-        std::map<std::string, Scnsl::Opc_ua::General_type_t  > _Address_space;
+        std::map<std::string, Scnsl::Opc_ua::General_type_t> _Address_space;
         //<
-        void* data;
+        //void* data;
 
         //disable copy constructor and assignment operator
         Server_Task_if(const Server_Task_if &);
