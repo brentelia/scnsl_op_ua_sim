@@ -50,7 +50,6 @@ namespace Scnsl{ namespace Opc_ua {
 
         //The server adress space
         std::map<std::string, Scnsl::Opc_ua::General_type_t> _Address_space;
-        //<
         //void* data;
 
         //disable copy constructor and assignment operator

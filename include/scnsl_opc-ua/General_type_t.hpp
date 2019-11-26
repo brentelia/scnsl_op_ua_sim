@@ -11,6 +11,7 @@ namespace Scnsl{ namespace Opc_ua{
         public:
             General_type_t() {};
             General_type_t (const General_type_t &) {};
+            virtual ~General_type_t(){};
     };
 }
 }

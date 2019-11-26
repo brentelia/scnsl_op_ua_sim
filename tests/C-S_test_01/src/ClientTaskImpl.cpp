@@ -29,7 +29,7 @@ void ClientTaskImpl::clientProcess()
                     std::cout<<"Got no result, maybe response was not initialized yet: "<<std::endl;
 
                 else{
-                    const Scnsl::Opc_ua::Node_type<int>* val = reinterpret_cast<Scnsl::Opc_ua::Node_type<int>*>(response);
+                    const Scnsl::Opc_ua::Node_type<int>* val = dynamic_cast<Scnsl::Opc_ua::Node_type<int>*>(response);
                     std::cout<<"[Client "<<client_id<<"]Got result "<<val->get_data()<<std::endl;
                 }
             }
@@ -41,7 +41,7 @@ void ClientTaskImpl::clientProcess()
                 if(last_query_status == Scnsl::Opc_ua::DATA_NOT_FOUND_ERROR)
                     std::cout<<"Got no result, maybe response was not initialized yet "<<std::endl;
                 else{
-                    const Scnsl::Opc_ua::Node_type<std::string>* val = reinterpret_cast< Scnsl::Opc_ua::Node_type<std::string>*>(response);
+                    const Scnsl::Opc_ua::Node_type<std::string>* val = dynamic_cast< Scnsl::Opc_ua::Node_type<std::string>*>(response);
                     std::cout<<"[Client "<<client_id<<"]Got result: "<<val->get_data()<<std::endl;
                 }
             }
@@ -53,7 +53,7 @@ void ClientTaskImpl::clientProcess()
                 if(last_query_status == Scnsl::Opc_ua::DATA_NOT_FOUND_ERROR)
                     std::cout<<"Got no result, maybe response was not initialized yet "<<std::endl;
                 else{
-                    const Scnsl::Opc_ua::Node_type<double> *val = reinterpret_cast<Scnsl::Opc_ua::Node_type<double>*>(response);
+                    const Scnsl::Opc_ua::Node_type<double> *val = dynamic_cast<Scnsl::Opc_ua::Node_type<double>*>(response);
                     std::cout<<"[Client "<<client_id<<"]Got result: "<<val->get_data()<<std::endl;
                 }
             }

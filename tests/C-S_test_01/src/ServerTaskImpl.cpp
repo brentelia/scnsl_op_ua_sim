@@ -16,13 +16,13 @@ ServerTaskImpl::~ServerTaskImpl()
 void ServerTaskImpl::serverProcess()
 {
     std::array<std::string,3> data_t = {"INT", "STRING", "DOUBLE"};
-    std::array<std::string,6> words= {"Armadillo", "Calendario", "Ornitorinco","Monotono","Esplosivo","Villa"};
+    std::array<std::string,6> words= {"A", "B", "C","D","E","F"};
 
     std::random_device rd;  //Will be used to obtain a seed for the random number engine
     std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
     std::uniform_real_distribution<> dis(10.0, 30.0);
     int startInt=0;
-    std::string startString = "hgfhfu";
+    std::string startString = "abcde";
     double startD=0.0;
     add_variable(data_t[0], *(new Scnsl::Opc_ua::Node_type<int> (startInt)));
     add_variable(data_t[1], *(new Scnsl::Opc_ua::Node_type<std::string> (startString)));
@@ -38,7 +38,7 @@ void ServerTaskImpl::serverProcess()
                 Scnsl::Opc_ua::General_type_t  val = *(new Scnsl::Opc_ua::Node_type<int> (val_int)); //creating a general type to add
                 //a destructor should be called somewhere  
                 
-                std::cout<<"\t[Server "<<server_id<<"]:Setting data_t for int (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
+                std::cout<<"\t[Server "<<server_id<<"]:Setting data_t for int (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<") at "<< val_int <<std::endl;
                 add_variable(data_t[0], val);
             }    
             break;
@@ -49,7 +49,7 @@ void ServerTaskImpl::serverProcess()
                 Scnsl::Opc_ua::General_type_t  val = *(new Scnsl::Opc_ua::Node_type<std::string> (words[word])); //creating a general type to add
                 //a destructor should be called somewhere  
                 
-                std::cout<<"\t[Server "<<server_id<<"]:Setting data_t for String (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
+                std::cout<<"\t[Server "<<server_id<<"]:Setting data_t for String (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<") at "<< words[word]<< std::endl;
                 add_variable(data_t[1], val);
             }
             break;
@@ -60,7 +60,7 @@ void ServerTaskImpl::serverProcess()
                 Scnsl::Opc_ua::General_type_t  val = *(new Scnsl::Opc_ua::Node_type<double> (value)); //creating a general type to add
                 //a destructor should be called somewhere  
                 
-                std::cout<<"\t[Server "<<server_id<<"]:Setting data_t for Double (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<")"<<std::endl;
+                std::cout<<"\t[Server "<<server_id<<"]:Setting data_t for Double (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<")at "<< value<<std::endl;
                 add_variable(data_t[2], val);
             }
             break;

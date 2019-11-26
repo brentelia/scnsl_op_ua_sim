@@ -46,7 +46,7 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
  
     Opc_ua_payload_t * query_p = static_cast<Opc_ua_payload_t *>(new Opc_ua_payload_t());
 
-    query_p->sender_id = std::to_string(server_id)+"_S"; //id_C same used during binding, must crete a class for automatic binding to server to avoid user to make itself and break program
+    query_p->sender_id = std::to_string(server_id)+"_S"; //id_S same used during binding, must crete a class for automatic binding to server to avoid user to make itself and break program
     query_p->sender_time = sc_core::sc_time_stamp().to_double();
     query_p->data_id = object_id;
     query_p->command_type=DATA_COMMAND;
