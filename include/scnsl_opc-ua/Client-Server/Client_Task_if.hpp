@@ -51,7 +51,7 @@ namespace Scnsl{ namespace Opc_ua {
 
         sc_core::sc_event query_completed;   //event to notify the end of the query
 
-        General_type_t data;
+        General_type_t* data;
 
         //disable copy constructor and assignment operator
         Client_Task_if(const Client_Task_if &);

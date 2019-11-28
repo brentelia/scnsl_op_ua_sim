@@ -69,5 +69,5 @@ General_type_t* Client_Task_if::query(std::string & id){
     std::cout<<"[CLIENT "<<client_id<<"]:Waiting for response ..."<<std::endl;
     TlmTask_if_t::send(std::to_string(client_id)+"_C",reinterpret_cast<byte_t *>(query_p),sizeof(Opc_ua_payload_t));
     wait(query_completed); //wait for btransport to be invocated from server
-    return &data;
+    return data;
 }

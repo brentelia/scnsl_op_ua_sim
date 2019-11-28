@@ -112,7 +112,7 @@ int sc_main(int argc, char* argv[])
         std::cout<<"Bind client to server"<<std::endl;
 
         std::cout<<"Starting simulation"<<std::endl;
-        sc_core::sc_start(sc_core::sc_time(100,sc_core::SC_SEC));
+        sc_core::sc_start(sc_core::sc_time(20,sc_core::SC_SEC));
         //sc_core::sc_stop();
     }
     catch (std::exception &e){

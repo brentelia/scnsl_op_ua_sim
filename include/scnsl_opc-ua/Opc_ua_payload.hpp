@@ -13,7 +13,7 @@ struct Opc_ua_payload_t
    
    	std::string data_id; //id in server address space for query
 	
-	Scnsl::Opc_ua::General_type_t data; //data sent
+	Scnsl::Opc_ua::General_type_t* data; //data sent
 
 	//****other fields for pubsub*****	
 	Scnsl::Opc_ua::Opc_message_status status ; // server cannot find the id requested; 	 

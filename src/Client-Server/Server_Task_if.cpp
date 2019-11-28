@@ -24,7 +24,7 @@ void Server_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
     //get data pointer
     Opc_ua_payload_t* payload = ((Opc_ua_payload_t*)p.get_data_ptr());
     //different requests
-    std::cout<<"\t[SERVER "<<server_id<<"]:Received command from:"<<payload->sender_id<<std::endl;
+    std::cout<<"\t\t[SERVER "<<server_id<<"]:Received command from:"<<payload->sender_id<<std::endl;
     switch (payload->command_type)
     {
     case QUERY_COMMAND: //query from a client;
@@ -36,7 +36,7 @@ void Server_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
     //OTHER CASE IN FUTURE
     default:
         SCNSL_TRACE_ERROR( 1, "Invalid command received." );
-        std::cout<<"\t[SERVER "<<server_id<<"]:Invalid command receiverd"<<std::endl;
+        std::cout<<"\t\t[SERVER "<<server_id<<"]:Invalid command receiverd"<<std::endl;
         break;
     }
 }
@@ -58,17 +58,18 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
     }
     else {
         
-        query_p->data = _Address_space[object_id];
+        query_p->data = (_Address_space.find(object_id))->second;
         query_p->status=OK_STATUS;
     }
         //DEBUG PRINT, TO REMOVE IN FUTURE
-    std::cout<<"\t[SERVER "<<server_id<<"]:Sending response for client: "<<client_id<<std::endl;
+    std::cout<<"\t\t[SERVER "<<server_id<<"]:Sending response for client: "<<client_id<<std::endl;
     //////////////////////////////
     //use send primitive 
     TlmTask_if_t::send(std::to_string(server_id)+"_S",reinterpret_cast<byte_t *>(query_p),sizeof(Opc_ua_payload_t));
 }
 
-void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t & variable)
+
+void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t *variable)
 {
     _Address_space[name]=variable;        
 }
