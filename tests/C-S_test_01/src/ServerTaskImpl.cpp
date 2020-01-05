@@ -27,22 +27,22 @@ void ServerTaskImpl::serverProcess()
     add_variable(data_t[0], new Scnsl::Opc_ua::Node_type<int> (startInt));
     add_variable(data_t[1], new Scnsl::Opc_ua::Node_type<std::string> (startString));
     add_variable(data_t[2], new Scnsl::Opc_ua::Node_type<double> (startD));
-    while( 1 ){
     Scnsl::Opc_ua::General_type_t*  val;
-        wait(std::rand()%500+500,sc_core::SC_MS);
-        switch (std::rand()%2 /*data_t.size()*/)
-        {
-        case 0:
-            {
+    while( 1 ){
+        wait(std::rand()%500,sc_core::SC_MS);
+       switch (std::rand()%2 /*data_t.size()*/)
+       {
+       case 0:
+           {
                 int val_int = std::rand() %200;
                 
-                 val=new Scnsl::Opc_ua::Node_type<int> (val_int); //creating a general type to add
+                // val=new Scnsl::Opc_ua::Node_type<int> (val_int); //creating a general type to add
                 //a destructor should be called somewhere  
                 
                 std::cout<<"\t\t[SERVER "<<server_id<<"]:Setting data_t for int (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<") at "<< val_int <<std::endl;
-                add_variable(data_t[0], val);
-            }    
-            break;
+                add_variable(data_t[0], new Scnsl::Opc_ua::Node_type<int> (val_int));
+      }    
+      break;
         /*case 1:
             {
                 int word = std::rand() % words.size();
@@ -54,21 +54,21 @@ void ServerTaskImpl::serverProcess()
                 add_variable(data_t[1], val);
             }
             break;*/
-        case 1/*2*/:
-            {
-                double value= dis(gen); //random distribution
-                
-                val = new Scnsl::Opc_ua::Node_type<double> (value); //creating a general type to add
-                //a destructor should be called somewhere  
-                
-                std::cout<<"\t\t[SERVER "<<server_id<<"]:Setting data_t for Double (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<") at "<< value << std::endl;
-                add_variable(data_t[2], val);
-            }
-            break;
-        default:
-            std::cout<<"Error"<<std::endl;
-            break;
-        }
+       case 1/*2*/:
+           {
+               double value= dis(gen); //random distribution
+               
+               val = new Scnsl::Opc_ua::Node_type<double> (value); //creating a general type to add
+               //a destructor should be called somewhere  
+               
+               std::cout<<"\t\t[SERVER "<<server_id<<"]:Setting data_t for Double (time: "<<sc_core::sc_time_stamp().to_double()*1e-9<<") at "<< value << std::endl;
+               add_variable(data_t[2], val);
+           }
+           break;
+       default:
+           std::cout<<"Error"<<std::endl;
+           break;
+       }
     }
 }
 

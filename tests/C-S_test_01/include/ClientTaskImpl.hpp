@@ -7,6 +7,10 @@
 #include <scnsl_opc-ua.hpp>
 #include <stdio.h>
 #include "ServerTaskImpl.hpp"
+/////
+#include<cassert>
+///////
+
 
 class ClientTaskImpl: public Scnsl::Opc_ua::Client_Task_if
 {

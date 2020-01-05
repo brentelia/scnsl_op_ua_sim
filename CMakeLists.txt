@@ -4,7 +4,7 @@ cmake_policy(SET CMP0054 OLD)
 
 # Setting extra modules path:
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/scripts)
-
+SET(CMAKE_CXX_FLAGS "-g")
 ##########
 # FIND SYSC AND SCNSL
 # SYSC 2.3.1 IS REQUIRED

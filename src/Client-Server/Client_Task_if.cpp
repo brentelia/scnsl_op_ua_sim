@@ -29,12 +29,6 @@ void Client_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
      //   if(payload->data == nullptr)
      //       std::cout<<"ERROR got nullptr on received data  "<<std::endl;
         //data = payload->data;
-
-        #if (SCNSL_LOG >= 1)
-                std::stringstream ss;
-                ss << "Query finished";
-                SCNSL_TRACE_LOG( 1, ss.str().c_str() );
-        #endif
         //notify the end of query
     }
     else //btransport called with another command or error occurred

@@ -30,7 +30,7 @@ int sc_main(int argc, char* argv[])
         CoreChannelSetup_t channel_setup;
         channel_setup.extensionId = "core";
         //haf duplex channel for allow comunication in both sense
-        channel_setup.channel_type = CoreChannelSetup_t::HALF_DUPLEX;
+        channel_setup.channel_type = CoreChannelSetup_t::HALF_DUPLEX;//FULL DUPLEX
         channel_setup.name = "channel";
         channel_setup.capacity = 10000;
         channel_setup.delay = sc_core::sc_time(1.0,sc_core::SC_US);

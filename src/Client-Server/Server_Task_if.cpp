@@ -28,7 +28,9 @@ void Server_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
     switch (payload->command_type)
     {
     case QUERY_COMMAND: //query from a client;
+        map_mutex.lock();
         query_solve(payload->sender_id, payload->data_id);
+        map_mutex.unlock();
         break;
     case PUBLISH_COMMAND:
         add_variable(payload->data_id, payload->data);
@@ -44,13 +46,12 @@ void Server_Task_if::b_transport( tlm::tlm_generic_payload & p, sc_core::sc_time
 //check in address space for request id
 void Server_Task_if::query_solve(std::string & client_id, std::string & object_id){
  
-    Opc_ua_payload_t * query_p = static_cast<Opc_ua_payload_t *>(new Opc_ua_payload_t());
+    Opc_ua_payload_t * query_p = new Opc_ua_payload_t();
 
     query_p->sender_id = std::to_string(server_id)+"_S"; //id_S same used during binding, must crete a class for automatic binding to server to avoid user to make itself and break program
     query_p->sender_time = sc_core::sc_time_stamp().to_double();
     query_p->data_id = object_id;
     query_p->command_type=DATA_COMMAND;
-    
     if(_Address_space.find(object_id)==_Address_space.end()){ //not found 
         
         query_p->data=_Address_space.begin()->second;
@@ -58,7 +59,7 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
     }
     else {
         
-        query_p->data = (_Address_space.find(object_id))->second;
+        query_p->data = _Address_space.find(object_id)->second;
         query_p->status=OK_STATUS;
     }
         //DEBUG PRINT, TO REMOVE IN FUTURE
@@ -71,5 +72,9 @@ void Server_Task_if::query_solve(std::string & client_id, std::string & object_i
 
 void Server_Task_if::add_variable (std::string & name,Scnsl::Opc_ua::General_type_t *variable)
 {
+    map_mutex.lock();
     _Address_space[name]=variable;        
+    map_mutex.unlock();
+
 }
+

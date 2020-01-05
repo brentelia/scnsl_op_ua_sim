@@ -9,8 +9,9 @@
 #include <tlm.h>
 #include <map>
 #include <string>
+#include <mutex>
 #include "../Opc_ua_payload.hpp"
-#include "../General_type_t.hpp"
+#include "../Node.hpp"
 #include "Client_Task_if.hpp"
 
     
@@ -47,9 +48,9 @@ namespace Scnsl{ namespace Opc_ua {
     private:
 
         //sc_event query_completed;   //event to notify the end of the query
-
+        std::mutex map_mutex;
         //The server adress space
-        std::map<std::string, Scnsl::Opc_ua::General_type_t* > _Address_space;
+    //    std::map<std::string, Scnsl::Opc_ua::General_type_t* > _Address_space;
         //void* data;
 
         //disable copy constructor and assignment operator

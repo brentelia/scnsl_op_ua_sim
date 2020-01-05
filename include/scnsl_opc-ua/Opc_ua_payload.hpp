@@ -3,7 +3,8 @@
 //payload struct for OPC_UA services data exchange
 #include <string>
 #include"Opc_ua_utils.hpp"
-#include "General_type_t.hpp"
+
+namespace Scnsl{ namespace Opc_ua{
 
 struct Opc_ua_payload_t
 {
@@ -13,10 +14,10 @@ struct Opc_ua_payload_t
    
    	std::string data_id; //id in server address space for query
 	
-	Scnsl::Opc_ua::General_type_t* data; //data sent
+//	Scnsl::Opc_ua::General_type_t* data; //data sent
 
 	//****other fields for pubsub*****	
 	Scnsl::Opc_ua::Opc_message_status status ; // server cannot find the id requested; 	 
 };
-
+}}
 #endif // OPC_UA_PAYLOAD_HPP
